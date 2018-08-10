@@ -1,0 +1,39 @@
+.dashboardFlag {
+  position: absolute;
+  top: -12px;
+  right: -5px;
+}
+.dashboardFlag .flagCorner {
+  width: 0;
+  height: 0;
+  border-right: 7px solid transparent;
+}
+
+.dashboardFlag .flagBox {
+  color: #ffffff;
+  font-size: 0.5em;
+  width: 34px;
+  height: 20px;
+  border-radius: 3px 3px 3px 0;
+  text-align: center;
+  line-height: 20px;
+}
+
+.dashboardFlag.magenta .flagBox {
+  background: #F40F97;
+}
+.dashboardFlag.magenta .flagCorner {
+  border-top: 7px solid #F40F97;
+}
+.dashboardFlag.blue .flagBox {
+  background: #00C1F6;
+}
+.dashboardFlag.blue .flagCorner {
+  border-top: 7px solid #00C1F6;
+}
+.dashboardFlag.green .flagBox {
+  background: #7ED321;
+}
+.dashboardFlag.green .flagCorner {
+  border-top: 7px solid #7ED321;
+}
