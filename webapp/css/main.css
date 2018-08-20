@@ -161,11 +161,11 @@ progress[value]::-webkit-progress-value {
   box-shadow: 0px 1px 19px 0px rgba(0,0,0,0.13);
   border-radius: 2px;
   position: relative;
-  height: 355px;
+  /*height: 355px;*/
 }
-/* .comment-container.approved {
+/*.comment-container.approved {
   opacity: 0.25;
-} */
+}*/
 .comment-user {
   font-size: 1em;
   color: #828282;
@@ -285,11 +285,68 @@ progress[value]::-webkit-progress-value {
 .action-btns .delete-btn {
   background-color: #F40F97;
 }
-.action-btns .reply-btn {
+.action-btns .reply-btn,
+.action-btns .show-btn {
   background-color: #00C1F6;
 }
 .action-btns .approve-btn {
   background-color: #7ED321;
+}
+.action-btns .show-btn {
+  margin: 0 auto;
+}
+.action-btns .show-btn:after {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 0px;
+  border-top: 15px solid white;
+  border-bottom: 0px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  margin: 5px auto 0;
+}
+.discussion-container.collapsed {
+  overflow: hidden;
+  height:0;
+}
+.discussion-container.collapsed ~ .comment-container.child ~ .action-btns .delete-btn,
+.discussion-container.collapsed ~ .comment-container.child ~ .action-btns .reply-btn,
+.discussion-container.collapsed ~ .comment-container.child ~ .action-btns .approve-btn {
+  display: none;
+}
+.discussion-container.collapsed ~ .comment-container.child ~ .action-btns .show-discussion {
+  display: block;
+}
+.discussion-container:not(.collapsed) .comment-container:after,
+.discussion-container.collapsed ~ .comment-container.child.new:after {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255,255,255,0.5);
+}
+.discussion-container.collapsed ~ .comment-container.child.new:after {
+  height: 50%;
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+}
+.show-discussion {
+  width: 100vw;
+  text-align: center;
+  display: none;
+}
+.show-discussion span {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  top: -100%;
+  left: 0;
+  color: #4A4A4A;
+  font-weight: bold;
 }
 .comment-status {
   text-align: center;
