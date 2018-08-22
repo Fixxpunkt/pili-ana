@@ -136,6 +136,12 @@ progress[value]::-webkit-progress-bar {
 progress[value]::-webkit-progress-value {
   background-color: #7ED321;
 }
+progress::-webkit-progress-value {
+  -webkit-transition : width .3s ease;
+  -moz-transition : width .3s ease;
+  -o-transition : width .3s ease;
+  transition : width .3s ease;
+}
 .comment-counter {
   text-align: center;
   font-size: 0.8em;
@@ -164,6 +170,7 @@ progress[value]::-webkit-progress-value {
   /*height: 355px;*/
 }
 .comment-container.new {
+  visibility: hidden;
   min-height: 335px;
 }
 /*.comment-container.approved {
@@ -266,6 +273,7 @@ progress[value]::-webkit-progress-value {
   padding: 8px 45px;
 }
 .action-btns {
+  visibility: hidden;
   margin: auto;
   /*display: inline-flex;
   position: absolute;

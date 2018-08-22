@@ -48,6 +48,8 @@ var aComments = new Array();
 			$('.show-btn').on('click', function(){
 				$('.discussion-container').removeClass('collapsed');
 			});
+
+			$('.action-btns, .comment-container.new').css('visibility', 'visible');
 		});
 }());
 
