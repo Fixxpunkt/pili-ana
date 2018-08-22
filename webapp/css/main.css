@@ -163,6 +163,9 @@ progress[value]::-webkit-progress-value {
   position: relative;
   /*height: 355px;*/
 }
+.comment-container.new {
+  min-height: 335px;
+}
 /*.comment-container.approved {
   opacity: 0.25;
 }*/
@@ -184,12 +187,13 @@ progress[value]::-webkit-progress-value {
   border-radius: 2px;
   width: 82px;
   float: right;
+  font-weight: bold;
 }
 .comment-toxicity.good {
   background: #7ED321;
 }
 .comment-toxicity.neutral {
-
+  background: #BABABA;
 }
 .comment-toxicity.bad {
   background: #F40F97;
@@ -263,14 +267,17 @@ progress[value]::-webkit-progress-value {
 }
 .action-btns {
   margin: auto;
-  display: inline-flex;
+  /*display: inline-flex;
   position: absolute;
-  left: 50%;
+  left: 50%;*/
   margin-top: -3.125em;
+  text-align: center;
+  position: relative;
+  z-index: 10;
 }
 .action-btns .center {
-  position: relative;
-  left: -50%;
+  /*position: relative;
+  left: -50%;*/
   display: inline-flex;
 }
 .action-btns .btn {

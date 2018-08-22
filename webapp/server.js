@@ -20,9 +20,12 @@ http.createServer(function(request, response) {
 	else if(/^\/[a-zA-Z0-9\/]*.css$/.test(request.url.toString())){
 		renderFile(response, request.url.toString().substring(1), "text/css");
 	}
-  else if(/^\/[a-zA-Z0-9\/]*.png$/.test(request.url.toString())){
+  	else if(/^\/[a-zA-Z0-9\/]*.png$/.test(request.url.toString())){
 		renderFile(response, request.url.toString().substring(1), "image/png");
 	}
+	else if(request.url.toString().includes('comment?id=') !== -1){
+	  renderFile(response, contentMap['/comment'], "text/html");
+  	}
 	else{
 		console.log("Requested URL is: " + request.url);
 		response.end();
