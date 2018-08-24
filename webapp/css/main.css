@@ -210,6 +210,8 @@ progress::-webkit-progress-value {
   color: #4A4A4A;
   padding: 15px 0;
   line-height: 1.3em;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 .comment-staple {
   opacity: 0.85;
