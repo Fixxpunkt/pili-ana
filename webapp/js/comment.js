@@ -1,14 +1,15 @@
 
 var aAllComments;
-var aComments = new Array();
+var aComments = [];
+var discussionId;
 
 (function () {
 	console.log('COMMENT INIT');
 	let params = (new URL(document.location)).searchParams;
-	let id = params.get("id");
-	console.log(id);
+	discussionId = params.get("id");
+	console.log(discussionId);
 
-	fetch(config.api.discussion+'?id='+id)
+	fetch(config.api.discussion+'?id='+discussionId)
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
@@ -39,10 +40,10 @@ var aComments = new Array();
 			}
 		})
 		.then(done => {
-			var currentComment = loadComment(0);
+			var iCurrentComment = loadComment(0);
 
 			$('.skip-btn').on('click', function(){
-				currentComment = loadComment((currentComment+1));
+				iCurrentComment = loadComment((iCurrentComment+1));
 			});
 
 			$('.show-btn').on('click', function(){
@@ -50,6 +51,12 @@ var aComments = new Array();
 			});
 
 			$('.action-btns, .comment-container.new').css('visibility', 'visible');
+
+			$('.delete-btn').on('click', deleteComment);
+			$('.approve-btn').on('click', approveComment);
+			$('.reply-btn').on('click', function(){
+				window.location = '/reply?id='+getCommentId()+'&dId='+discussionId;
+			});
 		});
 }());
 
@@ -73,10 +80,13 @@ var loadComment = function(index) {
 
 		$('.comment-container.new').removeClass('parent child');
 		$('.comment-container.new').addClass(aComments[index].commentType);
+		$('.comment-container.new').data('comment-id', aComments[index].id);
 		$('.comment-container.new .comment-user').text(aComments[index].User);
 		$('.comment-container.new .comment-timestamp').text(aComments[index].date);
 		$('.comment-container.new .comment-content').text(aComments[index].comment);
 		getToxicity(aComments[index].comment);
+	} else {
+		window.location = '/';
 	}
 
 	return index;
@@ -135,3 +145,72 @@ var getColor = function(value) {
 	var hue=((1-value)*120).toString(10);
 	return ["hsl(",hue,",100%,50%)"].join("");
 };
+
+var deleteComment = function(){
+	var commentId = getCommentId();
+	var currentIndex = aComments.findIndex(function(element){
+		return element.id == commentId;
+	});
+
+	fetch(config.api.delete+'?id='+commentId+'&iDiscussionId='+discussionId)
+		.then(response => response.json())
+		.then(data => {
+			if (data.status == 1){
+				$('.comment-status, .comment-status .deleted').show().delay(500).fadeOut(200);
+				$('.action-btns').hide();
+				setTimeout(function() {
+					aComments.splice(currentIndex, 1);
+					if (currentIndex == aComments.length && aComments.length != 0) {
+						currentIndex--;
+					}
+					loadComment(currentIndex);
+					$('.action-btns').show();
+				}, 700);
+			}
+		})
+};
+
+var approveComment = function(){
+	var commentId = getCommentId();
+	var currentIndex = aComments.findIndex(function(element){
+		return element.id == commentId;
+	});
+
+	fetch(config.api.approve+'?id='+commentId)
+		.then(response => response.json())
+		.then(data => {
+			if (data.status == 1){
+				$('.comment-status, .comment-status .approved').show().delay(500).fadeOut(200);
+				$('.action-btns').hide();
+				setTimeout(function(){
+					aComments[currentIndex].status = 1;
+					aComments.splice(currentIndex, 1);
+					if (currentIndex == aComments.length && aComments.length != 0){
+						currentIndex --;
+					}
+					loadComment(currentIndex);
+					$('.action-btns').show();
+				}, 700);
+			}
+		})
+};
+
+var respondComment = function(){
+	/*var commentId = $('.comment-container.new').data('comment-id');
+	var currentIndex = aComments.findIndex(function(element){
+		return element.id == commentId;
+	});
+	var commentItem = aComments.find(function(element){
+		return element.id == commentId;
+	});
+
+	fetch(config.api.respond+'?id='+commentId+'&iDiscussionId='+discussionId+'&comment='+commentItem.comment)
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+		})*/
+};
+
+var getCommentId = function(){
+	return $('.comment-container.new').data('comment-id');
+}

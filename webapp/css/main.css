@@ -33,7 +33,7 @@ h2.heading {
 .hidden {
   display: none !important;
 }
-.discussionSlider { width: 100%; height: 150px; padding: 0; }
+.discussionSlider { width: 100%; height: 150px; padding: 0; overflow: hidden; }
 .discussionSlider .slider { margin: 0; padding: 0; height: 100%; list-style: none; }
 .discussionSlider .slider li {
   float: left;
@@ -372,6 +372,7 @@ progress::-webkit-progress-value {
   height: 100%;
   width: 100%;
   background: rgba(255, 255, 255, 0.75);
+  display: none;
 }
 .comment-status .approved,
 .comment-status .deleted {
@@ -380,6 +381,8 @@ progress::-webkit-progress-value {
   font-size: 1.5em;
   position: relative;
   top: 50%;
+  margin-top: -20px;
+  display: none;
 }
 .comment-status.hidden .approved,
 .comment-status.hidden .deleted {
@@ -402,6 +405,8 @@ progress::-webkit-progress-value {
 .comment-reply.load {
   position: relative;
   height: 40px;
+  display: none;
+  padding: 0;
 }
 .comment-reply.load.approved {
   display: none;
@@ -418,6 +423,7 @@ progress::-webkit-progress-value {
   padding: 1em;
   font-size: 1em;
   box-sizing: border-box;
+  min-height: 355px;
 }
 .comment-reply textarea:focus {
   outline: none;
@@ -445,7 +451,6 @@ progress::-webkit-progress-value {
   margin: auto;
   width: 100%;
   text-align: center;
-  margin-top: 2em;
 }
 .comment-reply-btn .reply-approve-btn {
   border-radius: 2px;
@@ -453,12 +458,15 @@ progress::-webkit-progress-value {
   color: #ffffff;
   font-size: 1em;
   padding: 0.5em 1.5em;
+  display: inline-block;
 }
 .reply-input.processing,
 .comment-reply-btn.processing {
   display: none;
 }
-.comment-reply-content.processing {
+.comment-reply-content.processing,
+.comment-reply-container.processing,
+.comment-reply.load.processing {
   display: block;
 }
 .comment-reply-content {
@@ -466,7 +474,7 @@ progress::-webkit-progress-value {
 }
 .comment-reply-container {
   padding: 15px 10px;
-  margin: 0 20px 0;
+  /*margin: 0 20px 0;*/
   -webkit-box-shadow: 0px 1px 19px 0px rgba(0,0,0,0.13);
   -moz-box-shadow: 0px 1px 19px 0px rgba(0,0,0,0.13);
   box-shadow: 0px 1px 19px 0px rgba(0,0,0,0.13);
@@ -475,4 +483,8 @@ progress::-webkit-progress-value {
   height: 355px;
   font-weight: 300;
   color: #4A4A4A;
+  display: none;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
