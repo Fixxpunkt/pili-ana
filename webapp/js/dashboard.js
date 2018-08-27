@@ -11,27 +11,27 @@ var initDashboard = function(objDiscussions){
 
 		dashboardHMTL += '<li>';
 		dashboardHMTL += '<a href="/comment?id='+discussionItem.id+'" class="discussion-item" data-id="'+discussionItem.id+'">';
-		dashboardHMTL += '<div class="dashboardCounter"></div>';
-		dashboardHMTL += '<div class="dashboardTitle">'+discussionItem.title+'</div>';
-		dashboardHMTL += '<div class="dashboardMeta">';
-		dashboardHMTL += '<div class="dashboardTimestamp">'+discussionItem.date+'</div>';
-		dashboardHMTL += '<div class="dashboardAuthor">'+discussionItem.authors[Object.keys(discussionItem.authors)[0]]+authorCut+'</div>';
+		dashboardHMTL += '<div class="dashboard-counter"></div>';
+		dashboardHMTL += '<div class="dashboard-title">'+discussionItem.title+'</div>';
+		dashboardHMTL += '<div class="dashboard-meta">';
+		dashboardHMTL += '<div class="dashboard-timestamp">'+discussionItem.date+'</div>';
+		dashboardHMTL += '<div class="dashboard-author">'+discussionItem.authors[Object.keys(discussionItem.authors)[0]]+authorCut+'</div>';
 		dashboardHMTL += '</div>';
-		dashboardHMTL += '<div class="dashboardFlag '+flagColor+'">';
-		dashboardHMTL += '<div class="flagBox">'+discussionItem.waiting_count+'/'+discussionItem.total_count+'</div>';
-		dashboardHMTL += '<div class="flagCorner"></div>';
+		dashboardHMTL += '<div class="dashboard-flag '+flagColor+'">';
+		dashboardHMTL += '<div class="flag-box">'+discussionItem.waiting_count+'/'+discussionItem.total_count+'</div>';
+		dashboardHMTL += '<div class="flag-corner"></div>';
 		dashboardHMTL += '</div>';
 		dashboardHMTL += '</a>';
 		dashboardHMTL += '</li>';
 
 		if (author_id in discussionItem.authors) {
-			$('#ownStorys .slider').append(dashboardHMTL);
+			$('#ownstorys .slider').append(dashboardHMTL);
 		} else {
-			$('#allStorys .slider').append(dashboardHMTL);
+			$('#allstorys .slider').append(dashboardHMTL);
 		}
 	}
 
-	var $frame = $('.discussionSlider');
+	var $frame = $('.discussion-slider');
 	var $wrap  = $frame.parent();
 
 	$frame.sly({
