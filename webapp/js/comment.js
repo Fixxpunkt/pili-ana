@@ -12,6 +12,7 @@ var iDiscussionId;
 
 		var iCurrentIndex = load_comment(0);
 		$('.skip-btn').on('click', function(){
+			gtm_skip_event();
 			iCurrentIndex = load_comment((iCurrentIndex+1));
 		});
 		$('.show-btn').on('click', function(){
@@ -19,11 +20,21 @@ var iDiscussionId;
 		});
 
 		$('.action-btns, .comment-container.new').css('visibility', 'visible');
-		$('.delete-btn').on('click', delete_comment);
-		$('.approve-btn').on('click', approve_comment);
+		$('.delete-btn').on('click', function() {
+			delete_comment();
+			gtm_decline_btn_event();
+		});
+		$('.approve-btn').on('click', function(){
+			approve_comment();
+			gtm_approve_btn_event();
+		});
 		$('.reply-btn').on('click', function(){
 			window.location = '/reply?id='+get_comment_id()+'&dId='+iDiscussionId;
+			gtm_reply_btn_event();
 		});
+	});
+	$('.back-btn').on('click', function(){
+		gtm_back_event();
 	});
 }());
 
@@ -35,10 +46,12 @@ var load_comment = function(index) {
 		$('.comment-counter').text((index + 1) + '/' + aComments.length);
 		$('.progress-bar progress').val(100/aComments.length*(index+1));
 
+		var comment = aComments[index];
+
 		// Load all approved associative comments
-		if (aComments[index].commentType == 'child'){
+		if (comment.commentType == 'child'){
 			var parentItem = aAllComments.find(function(element){
-				return element.id == aComments[index].parentId;
+				return element.id == comment.parentId;
 			});
 			add_comment(parentItem);
 
@@ -49,16 +62,18 @@ var load_comment = function(index) {
 			}
 		}
 
+		send_comment_cd(comment.id, comment, iDiscussionId);
+
 		// Display comment to be approved
 		$('.comment-container.new').removeClass('parent child');
 		$('.comment-container.new').addClass(aComments[index].commentType);
-		$('.comment-container.new').data('comment-id', aComments[index].id);
-		$('.comment-container.new .comment-user').text(aComments[index].User);
-		$('.comment-container.new .comment-timestamp').text(aComments[index].date);
-		$('.comment-container.new .comment-content').text(aComments[index].comment);
+		$('.comment-container.new').data('comment-id', comment.id);
+		$('.comment-container.new .comment-user').text(comment.User);
+		$('.comment-container.new .comment-timestamp').text(comment.date);
+		$('.comment-container.new .comment-content').text(comment.comment);
 
 		// Get toxicity data and display on comment
-		get_toxicity(aComments[index].comment).then(data => {
+		get_toxicity(comment.comment).then(data => {
 			this.score = data.attributeScores.TOXICITY.summaryScore.value;
 
 			var toxicityColor = 'neutral';
@@ -67,9 +82,11 @@ var load_comment = function(index) {
 			} else if (this.score < 0.25) {
 				toxicityColor = 'good';
 			}
-
-			$('.comment-toxicity').text('Toxicity '+Math.round(this.score*100)+'%');
+			var toxicity = Math.round(this.score*100);
+			$('.comment-toxicity').text('Toxicity '+ toxicity +'%');
 			$('.comment-toxicity').removeClass('good neutral bad').addClass(toxicityColor);
+
+			GTM.addToDataLayer('commentToxicLevel', toxicity + '%');
 		});
 	} else {
 		window.location = '/';
