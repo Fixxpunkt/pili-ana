@@ -12,16 +12,11 @@ var iDiscussionId;
 		comment = get_comment_by_commentid(iCommentId, aAllComments);
 		$('.comment-user').text(comment.User);
 		$('.comment-content').text(comment.comment);
-		$('.comment-reply-btn').on('click', function(){
-			send_reply(iCommentId, comment);
-			gtm_reply_event(); 
-		});
+		$('.comment-reply-btn').on('click', function(){ send_reply(iCommentId, comment); });
 		$('.back-btn').on('click', function(){
-			gtm_back_event();
-			window.location = '/comment?id='+iDiscussionId;
+			//window.location = '/comment?id='+iDiscussionId;
+			router.navigate('comment?id='+iDiscussionId, false);
 		});
-		send_comment_cd(iCommentId, comment, iDiscussionId);
-
 	});
 }());
 

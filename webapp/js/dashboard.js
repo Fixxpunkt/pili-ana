@@ -10,28 +10,28 @@ var initDashboard = function(objDiscussions){
 		var dashboardHMTL = '';
 
 		dashboardHMTL += '<li>';
-		dashboardHMTL += '<a href="/comment?id='+discussionItem.id+'" class="discussion-item" data-id="'+discussionItem.id+'">';
-		dashboardHMTL += '<div class="dashboard-counter"></div>';
-		dashboardHMTL += '<div class="dashboard-title">'+discussionItem.title+'</div>';
-		dashboardHMTL += '<div class="dashboard-meta">';
-		dashboardHMTL += '<div class="dashboard-timestamp">'+discussionItem.date+'</div>';
-		dashboardHMTL += '<div class="dashboard-author">'+discussionItem.authors[Object.keys(discussionItem.authors)[0]]+authorCut+'</div>';
+		dashboardHMTL += '<a href="comment?id='+discussionItem.id+'" class="discussion-item" data-id="'+discussionItem.id+'" data-navigo>';
+		dashboardHMTL += '<div class="dashboardCounter"></div>';
+		dashboardHMTL += '<div class="dashboardTitle">'+discussionItem.title+'</div>';
+		dashboardHMTL += '<div class="dashboardMeta">';
+		dashboardHMTL += '<div class="dashboardTimestamp">'+discussionItem.date+'</div>';
+		dashboardHMTL += '<div class="dashboardAuthor">'+discussionItem.authors[Object.keys(discussionItem.authors)[0]]+authorCut+'</div>';
 		dashboardHMTL += '</div>';
-		dashboardHMTL += '<div class="dashboard-flag '+flagColor+'">';
-		dashboardHMTL += '<div class="flag-box">'+discussionItem.waiting_count+'/'+discussionItem.total_count+'</div>';
-		dashboardHMTL += '<div class="flag-corner"></div>';
+		dashboardHMTL += '<div class="dashboardFlag '+flagColor+'">';
+		dashboardHMTL += '<div class="flagBox">'+discussionItem.waiting_count+'/'+discussionItem.total_count+'</div>';
+		dashboardHMTL += '<div class="flagCorner"></div>';
 		dashboardHMTL += '</div>';
 		dashboardHMTL += '</a>';
 		dashboardHMTL += '</li>';
 
 		if (author_id in discussionItem.authors) {
-			$('#ownstorys .slider').append(dashboardHMTL);
+			$('#ownStorys .slider').append(dashboardHMTL);
 		} else {
-			$('#allstorys .slider').append(dashboardHMTL);
+			$('#allStorys .slider').append(dashboardHMTL);
 		}
 	}
 
-	var $frame = $('.discussion-slider');
+	var $frame = $('.discussionSlider');
 	var $wrap  = $frame.parent();
 
 	$frame.sly({
@@ -56,4 +56,6 @@ var initDashboard = function(objDiscussions){
 		prev: $wrap.find('.prev'),
 		next: $wrap.find('.next')
 	});
+	
+	router.updatePageLinks()
 };

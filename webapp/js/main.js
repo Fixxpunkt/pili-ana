@@ -1,5 +1,8 @@
 var author_id = 592727968;
 
+(function () {
+}());
+
 var get_discussions = function(){
 	return fetch(config.api.overview).then(res => res.json());
 };

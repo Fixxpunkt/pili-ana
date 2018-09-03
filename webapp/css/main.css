@@ -1,5 +1,5 @@
 body {
-  background: #fff;
+  background: #FAFAFA;
   /* width: 100vw;
   height: 100vh; */
   font-family: 'Lato', sans-serif;
@@ -15,7 +15,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
-#main-heading {
+#mainHeading {
   color: #4A4A4A;
   font-size: 1.4em;
   font-weight: 900;
@@ -33,9 +33,9 @@ h2.heading {
 .hidden {
   display: none !important;
 }
-.discussion-slider { width: 100%; height: 150px; padding: 0; overflow: hidden; }
-.discussion-slider .slider { margin: 0; padding: 0; height: 100%; list-style: none; }
-.discussion-slider .slider li {
+.discussionSlider { width: 100%; height: 150px; padding: 0; overflow: hidden; }
+.discussionSlider .slider { margin: 0; padding: 0; height: 100%; list-style: none; }
+.discussionSlider .slider li {
   float: left;
   margin: 15px 7px;
   padding: 0;
@@ -46,10 +46,10 @@ h2.heading {
   box-shadow: 0px 1px 19px 0px rgba(0,0,0,0.13);
   position: relative;
 }
-.discussion-slider .dashboard-meta {
+.discussionSlider .dashboardMeta {
   display: flex;
 }
-.discussion-slider .dashboard-title {
+.discussionSlider .dashboardTitle {
   padding: 10px 15px 0;
   font-size: 1.1em;
   color: #4A4A4A;
@@ -57,26 +57,27 @@ h2.heading {
   line-height: 1.4em;
 }
 
-.discussion-slider .dashboard-author {
+.discussionSlider .dashboardAuthor {
   width: 50%;
   font-size: 0.75em;
   text-align: right;
   padding: 5px 15px;
 }
-.discussion-slider .dashboard-timestamp {
+.discussionSlider .dashboardTimestamp {
   width: 50%;
   font-size: 0.75em;
   text-align: left;
   padding: 5px 15px;
 }
-/* .wrapper {
-  height: 100%;
-} */
+.wrapper {
+  position: relative;
+} 
 .wrapper.grey {
-  background: #FAFAFA;
+  /*background: #FAFAFA;*/
 }
 header {
   height: 55px;
+  background: white;
 }
 header .btn-container {
   display: flex;
@@ -85,6 +86,7 @@ header .btn-container .btn-left,
 header .btn-container .btn-right {
   width: 50%;
   padding: 20px 20px 15px;
+  z-index: 1;
 }
 header .btn-container .btn-right {
   text-align: right;
@@ -282,9 +284,12 @@ progress::-webkit-progress-value {
   left: 50%;*/
   margin-top: -3.125em;
   text-align: center;
-  position: relative;
+  /*position: relative;*/
   z-index: 10;
 }
+/*.action-btns.swipe {
+  position: static;
+}*/
 .action-btns .center {
   /*position: relative;
   left: -50%;*/
@@ -298,9 +303,25 @@ progress::-webkit-progress-value {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
+  transition: all .3s ease;
 }
 .action-btns .delete-btn {
   background-color: #F40F97;
+  position: absolute;
+  left: 10%;
+  bottom: 0;
+}
+.action-btns .delete-btn.swipe {
+  left: 0;
+  bottom: calc((100vh / 2) - 50px);
+}
+.action-btns .delete-btn.ready,
+.action-btns .approve-btn.ready {
+  background-color: #FFFFFF;
+}
+.action-btns .delete-btn.ready .icon-delete {
+  background-position: -10px -46px;
 }
 .action-btns .reply-btn,
 .action-btns .show-btn {
@@ -308,6 +329,16 @@ progress::-webkit-progress-value {
 }
 .action-btns .approve-btn {
   background-color: #7ED321;
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+}
+.action-btns .approve-btn.swipe {
+  bottom: calc((100vh / 2) - 50px);
+  right: 0;
+}
+.action-btns .approve-btn.ready .icon-approve {
+  background-position: -9px -10px;
 }
 .action-btns .show-btn {
   margin: 0 auto;
@@ -355,15 +386,41 @@ progress::-webkit-progress-value {
   width: 100vw;
   text-align: center;
   display: none;
+  z-index: 10;
 }
 .show-discussion span {
-  height: 100%;
   position: absolute;
   width: 100%;
-  top: -100%;
+  bottom: 15%;
   left: 0;
   color: #4A4A4A;
   font-weight: bold;
+}
+.swipe-delete, .swipe-approve {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+.swipe-delete {
+  background: -moz-linear-gradient(left, rgba(244,15,151,1) 0%, rgba(244,15,151,0) 100%);
+  background: -webkit-linear-gradient(left, rgba(244,15,151,1) 0%,rgba(244,15,151,0) 100%);
+  background: linear-gradient(to right, rgba(244,15,151,1) 0%,rgba(244,15,151,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f40f97', endColorstr='#00f40f97',GradientType=1 );
+}
+.swipe-approve {
+  background: -moz-linear-gradient(left, rgba(126,211,33,0) 0%, rgba(126,211,33,1) 100%);
+  background: -webkit-linear-gradient(left, rgba(126,211,33,0) 0%,rgba(126,211,33,1) 100%);
+  background: linear-gradient(to right, rgba(126,211,33,0) 0%,rgba(126,211,33,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007ed321', endColorstr='#7ed321',GradientType=1 );
+}
+.swipe-delete.swipe, .swipe-approve.swipe {
+	opacity: 0.2;
 }
 .comment-status {
   text-align: center;

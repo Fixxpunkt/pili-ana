@@ -1,35 +1,23 @@
 .icon {
-  background-image: url('../media/sprites/icons.png');
-  background-repeat: no-repeat;
-  display: block;
+    background-image: url('../media/sprites/icons.png');
+    background-repeat: no-repeat;
+    display: block;
 }
 
 .icon-approve {
-  width: 23px;
-  height: 16px;
-  background-position: -53px -10px;
+    width: 24px;
+    height: 17px;
+    background-position: -53px -10px;
 }
 
 .icon-delete {
-  width: 17px;
-  height: 17px;
-  background-position: -47px -46px;
+    width: 18px;
+    height: 18px;
+    background-position: -47px -46px;
 }
 
 .icon-reply {
-  width: 19px;
-  height: 14px;
-  background-position: -96px -10px;
-}
-
-.icon-approve-green {
-  width: 23px;
-  height: 16px;
-  background-position: -10px -10px;
-}
-
-.icon-delete-magenta {
-  width: 17px;
-  height: 17px;
-  background-position: -10px -46px;
+    width: 19px;
+    height: 14px;
+    background-position: -96px -10px;
 }

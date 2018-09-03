@@ -10,6 +10,6 @@ const config = {
 		perspective : "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyCYKugAmg-s7f95Y52NDQ3uYAvXuAv3Tbk",
 	},
 	gtm: {
-		containerId : "GTM-NDCPZFM"
+		containerId : "GTM-XXXXXXX"
 	}
 }

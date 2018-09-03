@@ -1,15 +1,15 @@
-.dashboard-flag {
+.dashboardFlag {
   position: absolute;
   top: -12px;
   right: -5px;
 }
-.dashboard-flag .flag-corner {
+.dashboardFlag .flagCorner {
   width: 0;
   height: 0;
   border-right: 7px solid transparent;
 }
 
-.dashboard-flag .flag-box {
+.dashboardFlag .flagBox {
   color: #ffffff;
   font-size: 0.5em;
   width: 34px;
@@ -19,21 +19,21 @@
   line-height: 20px;
 }
 
-.dashboard-flag.magenta .flag-box {
+.dashboardFlag.magenta .flagBox {
   background: #F40F97;
 }
-.dashboard-flag.magenta .flag-corner {
+.dashboardFlag.magenta .flagCorner {
   border-top: 7px solid #F40F97;
 }
-.dashboard-flag.blue .flag-box {
+.dashboardFlag.blue .flagBox {
   background: #00C1F6;
 }
-.dashboard-flag.blue .flag-corner {
+.dashboardFlag.blue .flagCorner {
   border-top: 7px solid #00C1F6;
 }
-.dashboard-flag.green .flag-box {
+.dashboardFlag.green .flagBox {
   background: #7ED321;
 }
-.dashboard-flag.green .flag-corner {
+.dashboardFlag.green .flagCorner {
   border-top: 7px solid #7ED321;
 }
