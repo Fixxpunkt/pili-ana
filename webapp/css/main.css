@@ -33,9 +33,9 @@ h2.heading {
 .hidden {
   display: none !important;
 }
-.discussionSlider { width: 100%; height: 150px; padding: 0; overflow: hidden; }
-.discussionSlider .slider { margin: 0; padding: 0; height: 100%; list-style: none; }
-.discussionSlider .slider li {
+.discussion-slider { width: 100%; height: 150px; padding: 0; overflow: hidden; }
+.discussion-slider .slider { margin: 0; padding: 0; height: 100%; list-style: none; }
+.discussion-slider .slider li {
   float: left;
   margin: 15px 7px;
   padding: 0;
@@ -46,10 +46,10 @@ h2.heading {
   box-shadow: 0px 1px 19px 0px rgba(0,0,0,0.13);
   position: relative;
 }
-.discussionSlider .dashboardMeta {
+.discussion-slider .dashboard-meta {
   display: flex;
 }
-.discussionSlider .dashboardTitle {
+.discussion-slider .dashboard-title {
   padding: 10px 15px 0;
   font-size: 1.1em;
   color: #4A4A4A;
@@ -57,13 +57,13 @@ h2.heading {
   line-height: 1.4em;
 }
 
-.discussionSlider .dashboardAuthor {
+.discussion-slider .dashboard-author {
   width: 50%;
   font-size: 0.75em;
   text-align: right;
   padding: 5px 15px;
 }
-.discussionSlider .dashboardTimestamp {
+.discussion-slider .dashboard-timestamp {
   width: 50%;
   font-size: 0.75em;
   text-align: left;
@@ -71,7 +71,7 @@ h2.heading {
 }
 .wrapper {
   position: relative;
-} 
+}
 .wrapper.grey {
   /*background: #FAFAFA;*/
 }
