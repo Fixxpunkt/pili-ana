@@ -77,8 +77,10 @@ function handleEnd(evt){
 
 	if (lw > 50 && getLP(curX) > 0.8 && ongoingTouches.swipe){
 		delete_comment();
+		gtm_decline_swipe_event();
 	} else if (rw > 50 && getRP(curX) > 0.8 && ongoingTouches.swipe){
 		approve_comment();
+		gtm_approve_swipe_event();
 	}
 
 	ongoingTouches = {
@@ -167,7 +169,7 @@ var load_comment = function(index) {
 		}
 
 		send_comment_cd(comment.id, comment, iDiscussionId);
-		
+
 		// Display comment to be approved
 		$('.comment-container.new').removeClass('parent child');
 		$('.comment-container.new').addClass(comment.commentType);
