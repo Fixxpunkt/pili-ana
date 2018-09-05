@@ -74,13 +74,16 @@ function handleEnd(evt){
 	var curX = touches[0].clientX;
 	var lw = ongoingTouches.lw;
 	var rw = ongoingTouches.rw;
+	var ml = ongoingTouches.ml;
 
-	if (lw > 50 && getLP(curX) > 0.8 && ongoingTouches.swipe){
+	if (curX-ml < lw && lw > 50 && (getLP(curX) > 0.8 || Math.abs(lw-curX-ml) > 100) && ongoingTouches.swipe){
 		delete_comment();
 		gtm_decline_swipe_event();
-	} else if (rw > 50 && getRP(curX) > 0.8 && ongoingTouches.swipe){
+	} else if (curX-ml > lw && rw > 50 && (getRP(curX) > 0.8 || Math.abs(curX-ml-lw) > 100) && ongoingTouches.swipe){
 		approve_comment();
 		gtm_approve_swipe_event();
+	} else {
+		resetSwipe();
 	}
 
 	ongoingTouches = {
