@@ -149,10 +149,10 @@ function getRP(curX){
 }
 
 var load_comment = function(index) {
-	$('.discussion-container').addClass('collapsed');
-	$('.discussion-container').empty();
-
 	if (index < aComments.length) {
+		$('.discussion-container').addClass('collapsed');
+		$('.discussion-container').empty();
+		
 		$('.comment-counter').text((index + 1) + '/' + aComments.length);
 		$('.progress-bar progress').val(100/aComments.length*(index+1));
 
@@ -179,7 +179,7 @@ var load_comment = function(index) {
 		$('.comment-container.new').data('comment-id', comment.id);
 		$('.comment-container.new .comment-user').text(comment.User);
 		$('.comment-container.new .comment-timestamp').text(comment.date);
-		$('.comment-container.new .comment-content').text(comment.comment);
+		$('.comment-container.new .comment-content').html($.nl2br(comment.comment));
 
 		// Get toxicity data and display on comment
 		get_toxicity(comment.comment).then(data => {
@@ -213,7 +213,7 @@ var add_comment = function(commentItem){
 	html += '<div class="comment-user">'+commentItem.User+'</div>';
 	html += '<div class="comment-timestamp">'+commentItem.date+'</div>';
 	html += '</div>';
-	html += '<div class="comment-content">'+commentItem.comment+'</div>';
+	html += '<div class="comment-content">'+$.nl2br(commentItem.comment)+'</div>';
 	html += '</div>';
 	$('.discussion-container').append(html);
 };

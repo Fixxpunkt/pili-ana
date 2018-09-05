@@ -37,3 +37,33 @@
 .dashboard-flag.green .flag-corner {
   border-top: 7px solid #7ED321;
 }
+.discussion-slider {
+  position: relative;
+}
+.discussion-slider .slider {
+  background: #FAFAFA;
+}
+.discussion-slider:before {
+  content: 'keine Storys vorhanden';
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0.3;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.8em;
+  width: 100%;
+  z-index: -1;
+}
+.discussion-slider:after {
+  content: '';
+  width: 317px;
+  height: 120px;
+  border: 1px solid #9B9B9B;
+  opacity: 0.2;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  margin-left: -160px;
+  z-index: -1;
+}

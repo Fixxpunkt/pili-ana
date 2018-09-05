@@ -1,4 +1,4 @@
-var author_id = 592727968;
+var author_id = $('body').data('user');//592727968;
 
 var get_discussions = function(){
 	return fetch(config.api.overview).then(res => res.json());
@@ -88,4 +88,8 @@ var execute_approve_comment = function(iCommentId){
 
 var execute_create_response = function(iCommentId, iDiscussionId, sComment){
 	return fetch(config.api.respond+'?id='+iCommentId+'&iDiscussionId='+iDiscussionId+'&comment='+encodeURI(sComment)).then(res => res.json());
+};
+
+jQuery.nl2br = function(sContent){
+	return sContent.replace(/(\r\n|\n\r|\r|\n)/g, "<br>");
 };
