@@ -1,11 +1,11 @@
-var author_id = $('body').data('user');//592727968;
+var author_id = $('body').data('user');
 
 var get_discussions = function(){
-	return fetch(config.api.overview).then(res => res.json());
+	return fetch(config.api.overview).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 };
 
 var get_comments_by_discussionId = function(iDiscussionId){
-	return fetch(config.api.discussion+'?id='+iDiscussionId).then(res => res.json());
+	return fetch(config.api.discussion+'?id='+iDiscussionId).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 };
 
 var get_open_comments = function(aAllComments){
@@ -79,17 +79,26 @@ var get_toxicity = function(text) {
 };
 
 var execute_delete_comment = function(iCommentId, iDiscussionId){
-	return fetch(config.api.delete+'?id='+iCommentId+'&iDiscussionId='+iDiscussionId).then(res => res.json());
+	return fetch(config.api.delete+'?id='+iCommentId+'&iDiscussionId='+iDiscussionId).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 };
 
 var execute_approve_comment = function(iCommentId){
-	return fetch(config.api.approve+'?id='+iCommentId).then(res => res.json());
+	return fetch(config.api.approve+'?id='+iCommentId).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 };
 
 var execute_create_response = function(iCommentId, iDiscussionId, sComment){
-	return fetch(config.api.respond+'?id='+iCommentId+'&iDiscussionId='+iDiscussionId+'&comment='+encodeURI(sComment)).then(res => res.json());
+	return fetch(config.api.respond+'?id='+iCommentId+'&iDiscussionId='+iDiscussionId+'&comment='+encodeURI(sComment)).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 };
 
 jQuery.nl2br = function(sContent){
 	return sContent.replace(/(\r\n|\n\r|\r|\n)/g, "<br>");
+};
+
+var display_error_message = function(response){
+	var errorMessage = '<strong>Could not connect to API!</strong>';
+	if ($('.loaderOverlay').length == 0){
+		$('body').prepend('<div class="loaderOverlay"></div>');
+	}
+	$('.loaderOverlay').empty().html('<div class="error-msg">'+errorMessage+'</div>');
+	$('body').css('overflow', 'hidden');
 };

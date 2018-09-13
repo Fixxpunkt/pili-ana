@@ -1,9 +1,10 @@
 (function () {
 	// Load all discussions and init dashboard
-	get_discussions().then(data => {initDashboard(data)})
+	get_discussions().then(data => { if (data != 'undefined'){ initDashboard(data); } }).catch(error => {});
 }());
 
 var initDashboard = function(objDiscussions){
+	send_basic_cd();
 	for (discussionItem of objDiscussions.items.Discussions){
 		var flagColor = author_id in discussionItem.authors ? 'magenta' : 'green';
 		var authorCut = Object.keys(discussionItem.authors).length > 1 ? ', ...' : '';
@@ -55,7 +56,11 @@ var initDashboard = function(objDiscussions){
 		// Buttons
 		prev: $wrap.find('.prev'),
 		next: $wrap.find('.next')
+	},
+	{
+		load: function(){
+			$('.loaderOverlay').empty().fadeOut().delay(800).remove();
+		}
 	});
-
 	router.updatePageLinks()
 };

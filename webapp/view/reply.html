@@ -1,35 +1,33 @@
+<header>
+	<div class="btn-container">
+	  <div class="btn-left">
+		<a class="btn back-btn" id="back-btn">zurück</a>
+	  </div>
+	</div>
 
-		<header>
-			<div class="btn-container">
-			  <div class="btn-left">
-				<a class="btn back-btn" id="back-btn">zurück</a>
-			  </div>
-			</div>
+</header>
+<div id="index" data-type="Reply"></div>
 
-		</header>
-		<div class="wrapper">
-			<div class="comment-reply">
-				<div class="comment-user">&nbsp;</div>
-				<div class="comment-content">&nbsp;</div>
-				<textarea class="reply-input" placeholder="Schreibe hier deine Antwort"></textarea>
-				<!-- <div class="comment-reply-container"> -->
-				<div class="comment-reply-container">
-					<div class="comment-status">
-						<div class="approved">Freigeschaltet</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- </div> -->
-			<div class="comment-reply-btn">
-				<a class="reply-approve-btn">antworten & freischalten</a>
-			</div>
-			<div class="comment-reply load">
-				<div class="loader-circle"></div>
-				<canvas height="70" width="70" id="loader" />
+<div class="wrapper">
+	<div class="comment-reply">
+		<div class="comment-user">&nbsp;</div>
+		<div class="comment-content">&nbsp;</div>
+		<textarea class="reply-input" placeholder="Schreibe hier deine Antwort"></textarea>
+		<div class="comment-reply-container">
+			<div class="comment-status">
+				<div class="approved">Freigeschaltet</div>
 			</div>
 		</div>
+		<div class="reply-status-message"></div>
+	</div>
+	<div class="comment-reply-btn off">
+		<a class="reply-approve-btn">antworten & freischalten</a>
+	</div>
+	<div class="comment-reply load">
+		<div class="loader-circle"></div>
+		<canvas height="70" width="70" id="loader" />
+	</div>
+</div>
 
-		<script src="js/loader.js"></script>
-		<script src="js/reply.js"></script>
-
+<script src="js/loader.js"></script>
+<script src="js/reply.js"></script>

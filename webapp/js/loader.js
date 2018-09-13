@@ -17,10 +17,7 @@ function fillCounter(element){
 	loader.stroke();   // fill stroke
 
 	if (startingPoint >= 20) {
-		//clearTimeout(this);     //fill is a variable that call the function fillcounter()
-		//clearTimeout(fill);
 		element.trigger('loaderFinished');
 	}
 	startingPoint++;
 }
-//var fill;//=setInterval(fillCounter,50);

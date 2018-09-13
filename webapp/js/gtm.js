@@ -34,40 +34,41 @@ var GTM = (function () {
 				if (typeof parent.window.dataLayer === 'undefined' || typeof window.dataLayer === 'undefined') {
 					return;
 				}
-        dataLayer.push(eventParams)
-
-			},
-      addToDataLayer: function(key, value) {
-        var cd = {};
-        cd[key] = value;
-        dataLayer.push(cd)
-			},
+				window.dataLayer.push(eventParams)
+			}
     }
 })();
 
 
-var isMobileDevice = (function() {
+var platform = (function() {
   var ua = navigator.userAgent.toLowerCase();
-  var platform = 'site-mobile';
 
   if (/(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(ua)) {
-    platform = 'site-tablet';
+    return 'site-tablet';
   } else {
     if (/(mobi|ipod|phone|blackberry|opera mini|fennec|minimo|symbian|psp|nintendo ds|archos|skyfire|puffin|blazer|bolt|gobrowser|iris|maemo|semc|teashark|uzard)/.test(ua)) {
-      platform = 'site-mobile';
+      return 'site-mobile';
     }  else {
-      platform = 'site-web';
+      return 'site-web';
     }
   }
-  GTM.addToDataLayer('platform', platform);
 })();
 
-var pageCanonical = (function() {
-  var url = window.location.href;
-  GTM.addToDataLayer('pageCanonical', url);
+var pageUrl = (function() {
+	return window.location.href;
 })();
 
-var send_comment_cd = function(commentId, comment, discussionId) {
+var send_basic_cd = function() {
+	var pageType = $('div#index').data('type');
+	var cd = {
+		'platform': platform,
+		'pageType': pageType,
+		'pageCanonical': pageUrl
+	}
+	dataLayer.push(cd);
+}
+
+var send_comment_cd = function(commentId, comment, discussionId, toxicity) {
   var date = new Date(comment.date),
 			year = date.getFullYear(),
 			month = (date.getMonth() < 10 ? '0' : '') + date.getMonth(),
@@ -77,21 +78,27 @@ var send_comment_cd = function(commentId, comment, discussionId) {
 			commentDate = year + '' + month + '' + day,
 			commentTime = hours + ':' + minutes;
 
-	GTM.addToDataLayer('commentDate', commentDate);
-	GTM.addToDataLayer('commentTime', commentTime);
-
   var commentMedia = (comment.media !== null) ? 'Yes' : 'No';
-  GTM.addToDataLayer('commentMedia', commentMedia);
-
   var commentParent = 'Yes';
   if (comment.commentType == 'child'){
-    commentParent = 'No';
+  	commentParent = 'No';
   }
-  GTM.addToDataLayer('commentParent', commentParent);
+	var pageType = $('div#index').data('type');
 
-  GTM.addToDataLayer('commentId', commentId);
-  GTM.addToDataLayer('commentUser', comment.User);
-  GTM.addToDataLayer('commentStoryId', discussionId);
+	var cd = {
+		'platform': platform,
+		'pageType': pageType,
+		'pageCanonical': pageUrl,
+		'commentDate': commentDate,
+		'commentTime' : commentTime,
+		'commentMedia': commentMedia,
+		'commentParent': commentParent,
+		'commentId': commentId,
+		'commentUser': comment.User,
+		'commentStoryId': discussionId,
+		'commentToxicLevel': toxicity
+	}
+	dataLayer.push(cd);
 };
 
 var gtm_skip_event = function() {
@@ -113,8 +120,16 @@ var gtm_decline_swipe_event = function() {
   GTM.event('Comments', 'Decline', 'Swipe');
 }
 var gtm_reply_btn_event = function() {
-  GTM.event('Comment', 'Reply', 'Select');
+  GTM.event('Comments', 'Reply', 'Select');
 }
 var gtm_reply_event = function() {
-  GTM.event('Comment', 'Reply', 'Send');
+  GTM.event('Comments', 'Reply', 'Send');
+}
+var gtm_discussion_event = function() {
+	GTM.event('Comments', 'Discussion', 'Show');
+}
+var gtm_fire_pageEvent = function() {
+	window.dataLayer.push({
+		'event': 'gapageEvent'
+	});
 }

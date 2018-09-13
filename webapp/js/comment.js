@@ -7,41 +7,47 @@ var iDiscussionId;
 	iDiscussionId = params.get("id");
 
 	get_comments_by_discussionId(iDiscussionId).then(data => {
-		aAllComments = Object.values(data.items.aData.Comments);
-		aComments = get_open_comments(aAllComments);
+		if (data != 'undefined')
+		{
+			aAllComments = Object.values(data.items.aData.Comments);
+			aComments = get_open_comments(aAllComments);
 
-		$('.comment-title').text(data.items.aData.Discussion.title);
+			$('.comment-title').text(data.items.aData.Discussion.title);
 
-		var iCurrentIndex = load_comment(0);
-		$('.skip-btn').on('click', function(){
-			gtm_skip_event();
-			iCurrentIndex = load_comment((iCurrentIndex+1));
-		});
-		$('.show-btn').on('click', function(){
-			$('.discussion-container').removeClass('collapsed');
-		});
+			var iCurrentIndex = load_comment(0);
+			$('.skip-btn').on('click', function () {
+				gtm_skip_event();
+				iCurrentIndex = load_comment((iCurrentIndex + 1));
+			});
+			$('.show-btn').on('click', function () {
+				$('.discussion-container').removeClass('collapsed');
+				gtm_discussion_event();
+			});
 
-		$('.action-btns, .comment-container.new').css('visibility', 'visible');
-		$('.delete-btn').on('click', function() {
-			delete_comment();
-			gtm_decline_btn_event();
-		});
-		$('.approve-btn').on('click', function(){
-			approve_comment();
-			gtm_approve_btn_event();
-		});
-		$('.reply-btn').on('click', function(){
-			//window.location = '/reply?id='+get_comment_id()+'&dId='+iDiscussionId;
-			router.navigate('reply?id='+get_comment_id()+'&dId='+iDiscussionId, false);
-			gtm_reply_btn_event();
-		});
+			$('.action-btns, .comment-container.new').css('visibility', 'visible');
+			$('.delete-btn').on('click', function () {
+				delete_comment();
+				gtm_decline_btn_event();
+			});
+			$('.approve-btn').on('click', function () {
+				approve_comment();
+				gtm_approve_btn_event();
+			});
+			$('.reply-btn').on('click', function () {
+				router.navigate('reply?id=' + get_comment_id() + '&dId=' + iDiscussionId, false);
+				gtm_reply_btn_event();
+			});
 
-		router.updatePageLinks()
-		initializeTouch();
-	});
-	$('.back-btn').on('click', function(){
-		gtm_back_event();
-	});
+			$('.back-btn').on('click', function () {
+				gtm_back_event();
+				gtm_fire_pageEvent();
+			});
+
+			router.updatePageLinks();
+			initializeTouch($('.comment-container.new'));
+			$('.loaderOverlay').empty().fadeOut().delay(800).remove();
+		}
+	}).catch(error => {})
 }());
 
 var ongoingTouches = {
@@ -51,12 +57,17 @@ var ongoingTouches = {
 	rw: 0,
 	ml: 0
 };
-function initializeTouch(){
-	$el = $('.comment-container.new');
+function initializeTouch($el){
 	$el.on('touchstart', handleStart);
 	$el.on('touchend', handleEnd);
 	$el.on('touchcancel', handleCancel);
 	$el.on('touchmove', handleMove);
+}
+function deactivateTouch($el){
+	$el.off('touchstart');
+	$el.off('touchend');
+	$el.off('touchcancel');
+	$el.off('touchmove');
 }
 function handleStart(evt){
 	var touches = evt.changedTouches;
@@ -152,7 +163,7 @@ var load_comment = function(index) {
 	if (index < aComments.length) {
 		$('.discussion-container').addClass('collapsed');
 		$('.discussion-container').empty();
-		
+
 		$('.comment-counter').text((index + 1) + '/' + aComments.length);
 		$('.progress-bar progress').val(100/aComments.length*(index+1));
 
@@ -171,7 +182,6 @@ var load_comment = function(index) {
 			}
 		}
 
-		send_comment_cd(comment.id, comment, iDiscussionId);
 
 		// Display comment to be approved
 		$('.comment-container.new').removeClass('parent child');
@@ -183,26 +193,29 @@ var load_comment = function(index) {
 
 		// Get toxicity data and display on comment
 		get_toxicity(comment.comment).then(data => {
-			this.score = data.attributeScores.TOXICITY.summaryScore.value;
+			if (data != 'undefined')
+			{
+				this.score = data.attributeScores.TOXICITY.summaryScore.value;
 
-			var toxicityColor = 'neutral';
-			if (this.score > 0.75){
-				toxicityColor = 'bad';
-			} else if (this.score < 0.25) {
-				toxicityColor = 'good';
+				var toxicityColor = 'neutral';
+				if (this.score > 0.75) {
+					toxicityColor = 'bad';
+				} else if (this.score < 0.25) {
+					toxicityColor = 'good';
+				}
+
+				var toxicity = Math.round(this.score * 100);
+				$('.comment-toxicity').text('Toxicity ' + toxicity + '%');
+				$('.comment-toxicity').removeClass('good neutral bad').addClass(toxicityColor);
+
+				send_comment_cd(comment.id, comment, iDiscussionId, toxicity);
 			}
-
-			var toxicity = Math.round(this.score*100);
-			$('.comment-toxicity').text('Toxicity '+ toxicity +'%');
-			$('.comment-toxicity').removeClass('good neutral bad').addClass(toxicityColor);
- 			GTM.addToDataLayer('commentToxicLevel', toxicity + '%');
-
-		});
+		}).catch(error => { $('.comment-toxicity').remove(); })
 
 	} else if (aComments.length == 0){
 		router.navigate('', false);
 	}
-
+	gtm_fire_pageEvent();
 	return index;
 };
 
@@ -236,7 +249,7 @@ var delete_comment = function(){
 				$('.action-btns').show();
 			}, 700);
 		}
-	})
+	}).catch(error => { deactivateTouch($('.comment-container.new')); })
 };
 
 var approve_comment = function(){
@@ -258,7 +271,7 @@ var approve_comment = function(){
 				$('.action-btns').show();
 			}, 700);
 		}
-	})
+	}).catch(error => { deactivateTouch($('.comment-container.new')); })
 };
 
 var get_comment_id = function(){
