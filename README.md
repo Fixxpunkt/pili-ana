@@ -3,7 +3,7 @@ The official pili-ana repository
 
 Version: Beta 1.0
 
-### Content Table
+## Content Table
 - Introduction
 - Setup
 - Methods
@@ -14,7 +14,7 @@ Version: Beta 1.0
 
 ----------
 
-### Introduction
+## Introduction
 Pili-Ana is a javascript-only app which allow journalists to efficiently interact
 with the highlighted opportunities, approve or delete user comments and
 to reply to user comments.
@@ -48,7 +48,7 @@ to reply to user comments.
 ----------
 
 ### How to setup App
-##### Configuration
+#### Configuration
 
 index.html - Insert user/editor id into attribute data-user on body tag
 
@@ -63,7 +63,7 @@ config.js - Insert API in this file.
 - perspective: URL to perspective API
 - containerId: Google Tag Manager ID
 
-##### How to run the app
+#### How to run the app
 ###### Local (will be handled by server.js)
 - open terminal and navigate to webapp folder
 - use ``` node server ``` to start local server
@@ -75,7 +75,7 @@ A htaccess-file shoud be in place for browser refresh.
 
 ----------
 
-##### main.js - main methods
+### main.js - main methods
 
 ###### get_discussions ()
 Calls ``` config.api.overview ``` to get all available discussions using
@@ -191,7 +191,7 @@ execute_create_response(_COMMENT_ID_, _DISCUSSION_ID_, _RESPONSE_TEXT_).then(dat
 
 ----------
 
-##### dashboard.js
+### dashboard.js
 
 ###### initDashboard ( iCommentId: int )
 Initializes the dashboard and activate slider functionality
@@ -223,7 +223,7 @@ Finds and returns the index of the current comment in ```aComments``` array.
 
 ----------
 
-##### reply.js
+### reply.js
 
 ###### send_reply ( iCommentId: int, comment: obj )
 Accepts current comment and creates editors response comment.
