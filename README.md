@@ -90,19 +90,15 @@ Response data must be provided from API as follows:
 {
   "items": {
     "Discussions: [{
-      "id": _DISCUSSION_ID_,
-      "assigned_to": {
-        "_USER_ID_": _DISCUSSION_USER_ID_,
-        "_USER_ID_": _DISCUSSION_USER_ID_
-      },
-      "waiting_count": _NUMBER_OF_COMMENTS_TO_BE_APPROVED_,
-      "total_count": _TOTAL_NUMBER_OF_COMMENTS_IN_THIS_DISCUSSION_,
-      "title": "_TITLE_OF_ARTICLE_",
+      "id": int,
+      "waiting_count": int,
+      "total_count": int,
+      "title": string,
       "authors": {
-        "_USER_ID_": "_USER_NAME_",
-        "_USER_ID_": "_USER_NAME_"
+        int: string,
+        int: string
       },
-      "date": "2018-01-01 10:10:10"
+      "date": string (YYYY-MM-DD HH:mm:ss)
     }]
   }
 }
@@ -122,23 +118,23 @@ Response data must be provided from API as follows:
   "aData": {
     "Discussion": {
       "authors": {
-        "255860191": "Bunni Khun"
+        int: string
       },
-      "title": "GIF to MP4. Test mit 3 GIFs, die auf Desktops automatisch starten."
+      "title": string
       },
       "Comments": {
-        "997663": {
-          "id": 997663,
+        int: {
+          "id": int,
           "User": {
-            "username": "Bunni",
-            "alert": 0,
-            "quote": 0,
-            "cleared": 0
+            "username": string,
+            "alert": int,
+            "quote": int,
+            "cleared": int
           },
-          "comment": "hallo",
-          "media": "\/imgdb\/7ba5\/Qx,C,0,0,0,0,0,0,0,0\/5452644022670912",
-          "status": 0,
-          "date": "2018-10-22 10:27:36"
+          "comment": string,
+          "media": string,
+          "status": int,
+          "date": string (YYYY-MM-DD HH:mm:ss)
         }
       }
     }
