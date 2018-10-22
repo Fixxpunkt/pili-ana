@@ -47,7 +47,7 @@ to reply to user comments.
 
 ----------
 
-### How to setup App
+## Setup
 #### Configuration
 
 index.html - Insert user/editor id into attribute data-user on body tag
@@ -75,6 +75,7 @@ A htaccess-file shoud be in place for browser refresh.
 
 ----------
 
+## Methods
 ### main.js - main methods
 
 ###### get_discussions ()
@@ -189,17 +190,13 @@ Access response data by using .then().
 execute_create_response(_COMMENT_ID_, _DISCUSSION_ID_, _RESPONSE_TEXT_).then(data => { // data.status == 1 for success });
 ```
 
-----------
-
 ### dashboard.js
 
 ###### initDashboard ( iCommentId: int )
 Initializes the dashboard and activate slider functionality
 after getting the data object by calling ```get_discussions()```.
 
-----------
-
-##### comment.js
+### comment.js
 
 ###### load_comment ( index: int )
 Loads one comment out of aComments array with all open comments to the view. 
@@ -220,8 +217,6 @@ Returns the comment id set in a data attribute of the view.
 
 ###### get_comment_index ( commentId: int )
 Finds and returns the index of the current comment in ```aComments``` array.
-
-----------
 
 ### reply.js
 
