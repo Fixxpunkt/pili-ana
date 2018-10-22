@@ -15,7 +15,7 @@ Version: Beta 1.0
 ----------
 
 ## Introduction
-Pili-Ana is a javascript-only app which allow journalists to efficiently interact
+pili-ana is a javascript-only app which allows journalists to efficiently interact
 with the highlighted opportunities, approve or delete user comments and
 to reply to user comments.
 
@@ -59,7 +59,7 @@ config.js - Insert API in this file.
 - discussion:  URL to API to get all comments of a discussion
 - approve:     URL to API to approve a comment
 - delete:      URL to API to delete a comment
-- respond:     URL to API to reply to a comment (approve associated comment and create new comment)
+- respond:     URL to API to reply to a comment (approves associated comment and sends editor's response)
 - perspective: URL to perspective API
 - containerId: Google Tag Manager ID
 
@@ -149,7 +149,7 @@ It checks the parents' status, looks for children and checks their status as wel
 
 ###### get_comment_by_commentid ( iCommentId: int, aCommentItems: obj )
 Returns a single comment object by passing a comment id and the array of comments where to look for.
-- __iCommentId__ ```Integer``` Id of comment to be return
+- __iCommentId__ ```Integer``` Id of comment to be returned
 - __aCommentItems__ ```Object``` Array object with all comments where to find a comment
 
 ###### get_toxicity ( text: str )
@@ -161,7 +161,7 @@ See the [Perspective API documentation](https://github.com/conversationai/perspe
 ###### execute_delete_comment ( iCommentId: int, iDiscussionId: int )
 Calls ```config.api.delete``` to reject a comment by giving the current comment id and discussion id.
 Make the response data available by using .then().
-- __iCommentId__ ```Integer``` Comment id of the comment that is to be rejected
+- __iCommentId__ ```Integer``` Id of the comment that is to be rejected
 - __iDiscussionId__ ```Integer``` Discussion id where the comment belongs to
 ```
 execute_delete_comment(_COMMENT_ID_, _DISCUSSION_ID_).then(data => { // data.status == 1 for success });
@@ -170,7 +170,7 @@ execute_delete_comment(_COMMENT_ID_, _DISCUSSION_ID_).then(data => { // data.sta
 ###### execute_approve_comment ( iCommentId: int )
 Calls ```config.api.approve``` to accept a comment by giving the current comment id.
 Make the response data available by using .then().
-- __iCommentId__ ```Integer``` Comment id of the comment that is to be accepted
+- __iCommentId__ ```Integer``` Id of the comment that is accepted
 ```
 execute_approve_comment(_COMMENT_ID_).then(data => { // data.status == 1 for success });
 ```
@@ -179,7 +179,7 @@ execute_approve_comment(_COMMENT_ID_).then(data => { // data.status == 1 for suc
 Calls ```config.api.respond``` to accept the users comment and create a editor response comment
 by passing the comment id to respond to, the discussion id and the response text. 
 Access response data by using .then().
-- __iCommentId__ ```Integer``` Comment id of the comment to be respond to
+- __iCommentId__ ```Integer``` Id of the comment to be responded to
 - __iDiscussionId__ ```Integer``` Discussion id where the comment belongs to
 - __sComment__ ```String``` Response text to the users comment
 ```
@@ -217,5 +217,5 @@ Finds and returns the index of the current comment in ```aComments``` array.
 ### reply.js
 
 ###### send_reply ( iCommentId: int, comment: obj )
-Accepts current comment and creates editors response comment.
+Accepts current comment and sends editor's response comment.
 Calls ```execute_approve_comment()``` in main.js.
