@@ -53,6 +53,24 @@ to reply to user comments.
 index.html - Insert user/editor id into attribute data-user on body tag
 
 config.js - Insert API in this file.
+```
+const config = {
+  name: string,
+  language: string,
+  api : {
+    overview : string,
+    discussion : string,
+    approve : string,
+    delete : string,
+    respond : string,
+    perspective : string,
+  },
+  gtm: {
+    containerId : string
+  }
+}
+```
+
 - name:		   Name of the App
 - language:    Language of the App. It is also used for Perspective APIs language
 - overview:    URL to API to get all discussions
@@ -108,7 +126,7 @@ Response data must be provided from API as follows:
 Calls ``` config.api.discussion ``` to get all comments of a discussion
 by passing a discussion id. Make the response data available by using .then().
 ```
-get_comments_by_discussionId(123456789).then(data => { //response code goes here })
+get_comments_by_discussionId(_DISCUSSION_ID_).then(data => { //response code goes here })
 ```
 
 Response data must be provided from API as follows:
