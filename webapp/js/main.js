@@ -102,3 +102,21 @@ var display_error_message = function(response){
 	$('.loaderOverlay').empty().html('<div class="error-msg">'+errorMessage+'</div>');
 	$('body').css('overflow', 'hidden');
 };
+
+$.fn.isInViewport = function() {
+	var elementTop = $(this).offset().top;
+	var elementBottom = elementTop + $(this).outerHeight();
+	var viewportTop = $(window).scrollTop();
+	var viewportBottom = viewportTop + $(window).height();
+	return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
+var parseDate = function(date){
+	var dDate = new Date(date.replace(/-/g, '/'));
+	var dDay = dDate.getDate().toString().length == 1 ? '0'+dDate.getDate() : dDate.getDate();
+	var dMonth = (dDate.getMonth()+1).toString().length == 1 ? '0'+dDate.getMonth() : dDate.getMonth()+1;
+	var dHours = dDate.getHours().toString().length == 1 ? '0'+dDate.getHours() : dDate.getHours();
+	var dMinutes = dDate.getMinutes().toString().length == 1 ? '0'+dDate.getMinutes() : dDate.getMinutes();
+	var parsedDate = dDay+'.'+dMonth+'.'+dDate.getFullYear()+"&nbsp;&nbsp;&nbsp;"+dHours+':'+dMinutes;
+	return parsedDate;
+};

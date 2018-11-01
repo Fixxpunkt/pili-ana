@@ -5,7 +5,7 @@ body {
 	color: #9B9B9B;
 	max-width: 1024px;
 	margin: auto;
-	height: 100vh;
+	max-height: 100vh;
 	box-sizing: border-box;
 }
 a {
@@ -31,7 +31,7 @@ h2.heading {
 .hidden {
 	display: none !important;
 }
-.discussion-slider { width: 100%; height: 150px; padding: 0; overflow: hidden; }
+.discussion-slider { width: 100%; height: 150px; padding: 0; overflow: hidden; touch-action: pan-y; }
 .discussion-slider .slider { margin: 0; padding: 0; height: 100%; list-style: none; }
 .discussion-slider .slider li {
 	float: left;
@@ -67,6 +67,11 @@ h2.heading {
 	text-align: left;
 	padding: 5px 15px;
 }
+.discussion-item {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+}
 .wrapper {
 	position: relative;
 	margin-bottom: 2em;
@@ -76,15 +81,15 @@ h2.heading {
 }
 header {
 	height: 55px;
-	background: white;
 }
 header .btn-container {
 	display: flex;
+	background: white;
 }
 header .btn-container .btn-left,
 header .btn-container .btn-right {
 	width: 50%;
-	padding: 20px 20px 15px;
+	padding: 13px 20px 11px;
 	z-index: 1;
 }
 header .btn-container .btn-right {
@@ -92,30 +97,39 @@ header .btn-container .btn-right {
 }
 
 header .btn {
+	display: inline-block;
+}
+header .btn span {
 	position: relative;
 	margin: 0;
-	padding: 5px 10px;
+	padding: 0 10px;
 	background: #BABABA;
 	color: white;
 	font-size: 14px;
 	cursor: pointer;
 	border-radius: 2px;
+	display: inline-block;
+	line-height: 24px;
+	vertical-align: middle;
 }
-header .btn::after {
+header .btn::before {
 	content: '';
-	position: absolute;
+	position: relative;
 	top: 0;
 	width: 0;
 	height: 0;
+	display: inline-block;
+	vertical-align: middle;
 }
-header .btn:hover {
+header .btn span:hover {
 	background: #BABABA;
 }
-header .back-btn::after {
+header .back-btn::before {
 	border-style: solid;
-	left: -5px;
+	left: 1px;
 	border-color: transparent #BABABA transparent transparent;
-	border-width: 13px 5px 12px 0;
+	border-width: 12px 6px 12px 0;
+	border-radius: 10px;
 }
 
 .progress-bar {
@@ -158,7 +172,7 @@ progress::-webkit-progress-value {
 	text-overflow: ellipsis;
 	max-width: 265px;
 	margin: auto;
-
+	display: block;
 }
 .comment-container {
 	padding: 15px 10px;
@@ -173,10 +187,10 @@ progress::-webkit-progress-value {
 }
 .comment-container.new {
 	visibility: hidden;
-	min-height: 335px;
+	min-height: 336px;
 }
 .collapsed ~ .comment-container.new.child {
-	height: 335px;
+	height: 336px;
 	overflow: hidden;
 }
 .comment-user {
@@ -184,7 +198,8 @@ progress::-webkit-progress-value {
 	color: #828282;
 	display: inline-flex;
 }
-.comment-timestamp {
+.comment-timestamp,
+.comment-user-stats {
 	font-size: 0.75em;
 	color: #BDBDBD;
 }
@@ -215,6 +230,49 @@ progress::-webkit-progress-value {
 	line-height: 1.3em;
 	overflow-wrap: break-word;
 	word-wrap: break-word;
+}
+.comment-content a {
+	background: linear-gradient(to bottom, transparent 90.9%,rgba(0,193,246,1) 91%,rgba(0,193,246,1) 94.9%,transparent 95%);
+	text-shadow: 0.03em 0 #fff, -0.03em 0 #fff, 0 0.03em #fff, 0 -0.03em #fff, 0.06em 0 #fff, -0.06em 0 #fff, 0.09em 0 #fff, -0.09em 0 #fff, 0.12em 0 #fff, -0.12em 0 #fff, 0.15em 0 #fff, -0.15em 0 #fff;
+}
+.comment-content .comment-thumb {
+	display: block;
+	max-width: 100%;
+	padding: 15px 0;
+}
+.comment-content .comment-youtube {
+	margin: 15px 0 0;
+	width: 100%;
+	height: 0;
+	padding-bottom: 56.25%;
+	overflow: hidden;
+	cursor: pointer;
+	position: relative;
+}
+.comment-content .comment-youtube .preview {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: url(/media/img/main/vendor/background_video.jpeg);
+	background-size: cover;
+	background-position: left center;
+}
+.comment-content .comment-youtube .arrow {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	height: 50px;
+	border-radius: 50%;
+}
+.comment-content .comment-youtube iframe {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
 }
 .comment-staple {
 	opacity: 0.85;
@@ -372,12 +430,13 @@ progress::-webkit-progress-value {
 	left: 0;
 	right: 0;
 	background-color: rgba(255,255,255,0.5);
+	pointer-events: none;
 }
 .discussion-container.collapsed ~ .comment-container.child.new:after,
 .comment-reply-container:after {
 	height: 50%;
-	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
-	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 75%, rgba(255,255,255,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 75%, rgba(255,255,255,1) 100%);
 }
 .show-discussion {
 	width: 100vw;
@@ -429,6 +488,7 @@ progress::-webkit-progress-value {
 	width: 100%;
 	background: rgba(255, 255, 255, 0.75);
 	display: none;
+	z-index: 1;
 }
 .comment-status .approved,
 .comment-status .deleted {
@@ -457,6 +517,12 @@ progress::-webkit-progress-value {
 .comment-reply .comment-content {
 	color: #9B9B9B;
 	font-size: 0.8em;
+	height: 0;
+	overflow: hidden;
+	transition: height .3s ease;
+}
+.comment-reply .comment-content p {
+	margin: 0;
 }
 .comment-reply.load {
 	position: relative;
