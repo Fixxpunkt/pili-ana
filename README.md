@@ -1,5 +1,4 @@
 # Pili-Ana
-----------
 The official pili-ana repository
 
 Version: 1.0.0
@@ -8,10 +7,8 @@ pili-ana is a javascript-only app which allows journalists to efficiently intera
 with the highlighted opportunities, approve or delete user comments and
 to reply to user comments.
 
-----------
-
 ## Getting Started
-#### 1. Download Pili-Ana
+### 1. Download Pili-Ana
 Download required Pili-Ana files:
 - css
   - piliana.css
@@ -28,7 +25,7 @@ Download required Pili-Ana files:
 - server.js (only needed for local test with node.js)
 - readme.md
 
-#### 2. Include Pili-Ana Files To Website/App
+### 2. Include Pili-Ana Files To Website/App
 Include Pili-Ana's CSS and JS files to your html file:
 ```
 <!DOCTYPE html>
@@ -44,13 +41,13 @@ Include Pili-Ana's CSS and JS files to your html file:
 </html>
 ```
 
-#### 3. Add Pili-Ana HTML Layout
+### 3. Add Pili-Ana HTML Layout
 Now add basic Pili-Ana layout to your app:
 ```
 <div id="piliana-container" class="piliana-container"></div>
 ```
 
-#### 4. Initialize Pili-Ana
+### 4. Initialize Pili-Ana
 Finally initialize Pili-Ana in JS. There are few options required to be set:
 ```
 <script>
@@ -79,8 +76,6 @@ var myPiliana = new Piliana('#piliana-container', {
 - respond:     URL to API to reply to a comment (approves associated comment and sends editor's response)
 - perspective: URL to perspective API
 - containerId: Google Tag Manager ID
-
-----------
 
 ## How to run the app locally
 - open terminal and navigate to webapp folder
