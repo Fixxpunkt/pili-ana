@@ -2,10 +2,10 @@
 <header>
 	<div class="btn-container">
 		<div class="btn-left">
-			<a href="/" class="btn back-btn" data-navigo><span>zurück</span></a>
+			<a href="javascript:void();" class="btn back-btn"><span>zurück</span></a>
 		</div>
 		<div class="btn-right">
-			<a class="btn skip-btn"><span>skip</span></a>
+			<a href="javascript:void();" class="btn skip-btn hidden"><span>skip</span></a>
 		</div>
 	</div>
 	<div class="progress-bar">
@@ -18,17 +18,13 @@
 	<div class="swipe-approve"></div>
 
 	<div class="comment-counter">&nbsp;</div>
-	<a class="comment-title" href="" target="_blank">&nbsp;</a>
+	<a class="comment-title-link" href="" target="_blank"><h2 class="comment-title"></h2></a>
 
 	<div class="discussion-container collapsed"></div>
 	<div class="comment-container new">
 		<div class="comment-status">
 			<div class="approved">Freigeschaltet</div>
 			<div class="deleted">Gelöscht</div>
-		</div>
-		<div class="comment-media hidden">
-			<div class="desc">Dieser Kommentar <br/> beinhaltet Medien.  <br/> Bitte im CMS bearbeiten.</div>
-			<a href="#" class="media-btn">weiter</a>
 		</div>
 		<div class="comment-meta">
 			<div class="comment-user"></div>
@@ -61,5 +57,3 @@
 		</div>
 	</div>
 </div>
-
-<script src="js/comment.js"></script>
