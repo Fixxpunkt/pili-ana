@@ -1712,8 +1712,9 @@
 		log('-------------------------------------------------------------------------------------');
 		log('                           LOAD VIEW: '+view+'.html');
 		log('-------------------------------------------------------------------------------------');
+		var path = window.location.pathname.length > 1 ? window.location.pathname : '/';
 		var req = new XMLHttpRequest();
-		req.open('GET', 'view/'+view+'.html');
+		req.open('GET', path+'view/'+view+'.html');
 		req.send();
 
 		req.onload = () => {

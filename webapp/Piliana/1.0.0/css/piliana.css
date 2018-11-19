@@ -492,12 +492,13 @@ progress::-webkit-progress-value {
 }
 .comment-staple .staple-2 {
 	width: 80%;
+	opacity: 0.8;
 	z-index: 1;
 }
 .comment-staple .staple-3 {
 	width: 75%;
 	height: 10px;
-	opacity: 0.45;
+	opacity: 0.4;
 	z-index: 0;
 }
 .comment-media {
