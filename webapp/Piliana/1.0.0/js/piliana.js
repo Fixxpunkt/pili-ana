@@ -969,19 +969,19 @@
 
 	// MAIN METHODS
 	function get_discussions(){
-		console.log('  -> get_discussions');
+		log('  -> get_discussions');
 		var piliana = this;
 		return fetch(piliana.params.api.overview).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 	}
 
 	function get_comments_by_discussionId(){
-		console.log('  -> get_comments_by_discussionId');
+		log('  -> get_comments_by_discussionId');
 		var piliana = this;
 		return fetch(piliana.params.api.discussion+'?id='+piliana.discussionId).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 	}
 
 	function get_open_comments(aAllComments){
-		console.log('  -> get_open_comments');
+		log('  -> get_open_comments');
 		var aComments = [];
 		for (var parentKey in aAllComments){
 
@@ -1007,7 +1007,7 @@
 	}
 
 	function get_comment_by_commentid(iCommentId, aCommentItems){
-		console.log('  -> get_comment_by_commentid');
+		log('  -> get_comment_by_commentid');
 		var commentItem = aCommentItems.find(function(element){
 			return element.id == iCommentId;
 		});
@@ -1052,25 +1052,25 @@
 	}
 
 	function execute_delete_comment(){
-		console.log('  -> execute_delete_comment');
+		log('  -> execute_delete_comment');
 		var piliana = this;
 		return fetch(piliana.params.api.delete+'?id='+piliana.commentId+'&iDiscussionId='+piliana.discussionId).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 	}
 
 	function execute_approve_comment(){
-		console.log('  -> execute_approve_comment');
+		log('  -> execute_approve_comment');
 		var piliana = this;
 		return fetch(piliana.params.api.approve+'?id='+piliana.commentId).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 	}
 
 	function execute_create_response(sComment){
-		console.log('  -> execute_create_response');
+		log('  -> execute_create_response');
 		var piliana = this;
 		return fetch(piliana.params.api.respond+'?id='+piliana.commentId+'&iDiscussionId='+piliana.discussionId+'&comment='+encodeURI(sComment)).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 	}
 
 	function display_error_message(response){
-		console.log('  -> display_error_message');
+		log('  -> display_error_message');
 		var errorMessage = '<strong>Could not connect to API!</strong>';
 		if ($('.loaderOverlay').length == 0){
 			$('body').prepend('<div class="loaderOverlay"></div>');
@@ -1111,7 +1111,7 @@
 
 	// DASHBOARD
 	function initDashboard(objDiscussions){
-		console.log('=> initDashboard');
+		log('=> initDashboard');
 		send_basic_cd();
 		var piliana = this;
 		piliana.editorId = objDiscussions.items.editorId;
@@ -1165,7 +1165,7 @@
 
 	// COMMENTS
 	function initComments(data){
-		console.log('=> initComments');
+		log('=> initComments');
 		var piliana = this;
 		var iDiscussionId = piliana.discussionId;
 
@@ -1217,7 +1217,7 @@
 	}
 
 	function load_comment(index) {
-		console.log('  -> load_comment');
+		log('  -> load_comment');
 		var piliana = this;
 		if (index < piliana.aComments.length) {
 			$('.skip-btn').removeClass('hidden');
@@ -1251,7 +1251,7 @@
 			$('.comment-container.new .comment-content').html(nl2br(convert_youtube_links(comment.comment)));
 
 			if (comment.media !== null) {
-				var img = '<a href="https://www.watson.ch' + comment.media + '" target="_blank"><img class="comment-thumb" src="https://www.watson.ch' + comment.media + '"></a>';
+				var img = '<a href="' + comment.media + '" target="_blank"><img class="comment-thumb" src="' + comment.media + '"></a>';
 				$('.comment-container.new .comment-content').append(img);
 			}
 
@@ -1311,7 +1311,7 @@
 	}
 
 	function delete_comment(){
-		console.log('  -> delete_comment');
+		log('  -> delete_comment');
 		var piliana = this;
 		piliana.commentId = get_comment_id();
 		var iCurrentIndex = piliana.get_comment_index(piliana.commentId);
@@ -1336,7 +1336,7 @@
 	}
 
 	function approve_comment(){
-		console.log('  -> approve_comment');
+		log('  -> approve_comment');
 		var piliana = this;
 		piliana.commentId = get_comment_id();
 		var iCurrentIndex = piliana.get_comment_index(piliana.commentId);
@@ -1362,12 +1362,12 @@
 	}
 
 	function get_comment_id(){
-		console.log('  -> get_comment_id');
+		log('  -> get_comment_id');
 		return $('.comment-container.new').data('comment-id');
 	}
 
 	function get_comment_index(commentId){
-		console.log('  -> get_comment_index');
+		log('  -> get_comment_index');
 		var piliana = this;
 		var index = piliana.aComments.findIndex(function(element){ return element.id == commentId; });
 		return index;
@@ -1408,7 +1408,7 @@
 	}
 
 	function resetYoutube() {
-		console.log('  -> resetYoutube');
+		log('  -> resetYoutube');
 		$('.comment-youtube[data-playing="true"]').each(function(index) {
 			$(this).find('iframe').remove();
 			$(this).removeAttr('data-playing');
@@ -1448,7 +1448,7 @@
 		$el.off('touchmove');
 	}
 	function handleStart(evt){
-		console.log('    > handleStart');
+		log('    > handleStart');
 		var el = this;
 		var elStyle = window.getComputedStyle(el);
 		var touches = evt.changedTouches;
@@ -1463,7 +1463,7 @@
 		}
 	}
 	function handleEnd(evt){
-		console.log('    > handleEnd');
+		log('    > handleEnd');
 		var el = this;
 		var touches = evt.changedTouches;
 		var curX = touches[0].clientX;
@@ -1476,11 +1476,9 @@
 
 		if (isInViewport($('.action-btns'))) {
 			if (curX - ml < lw && lw > sW && getLP(curX,el) > sT && el.ongoingTouches.swipe && vDelta < sW) {
-				console.log('delete');
 				piliana.delete_comment();
 				gtm_decline_swipe_event();
 			} else if (curX - ml > lw && rw > sW && getRP(curX,el) > sT && el.ongoingTouches.swipe && vDelta < sW) {
-				console.log('approve');
 				piliana.approve_comment();
 				gtm_approve_swipe_event();
 			} else {
@@ -1495,7 +1493,6 @@
 		el.ongoingTouches.y = 0;
 	}
 	function handleMove(evt){
-		console.log('    > handleMove');
 		var el = this;
 		var touches = evt.changedTouches;
 		var curX = touches[0].clientX;
@@ -1534,7 +1531,7 @@
 		}
 	}
 	function resetSwipe(){
-		console.log('    > resetSwipe');
+		log('    > resetSwipe');
 		$('.swipe-delete').removeClass('swipe');
 		$('.swipe-approve').removeClass('swipe');
 		$('.approve-btn').removeClass('swipe');
@@ -1574,7 +1571,7 @@
 
 	// REPLY
 	function initReply(){
-		console.log('=> initReply');
+		log('=> initReply');
 		var piliana = this;
 		var comment = get_comment_by_commentid(piliana.commentId, piliana.aAllComments);
 		$('.comment-user').text(comment.User.username);
@@ -1593,9 +1590,6 @@
 		$('.reply-input').on('keyup', function (e) {
 			checkTextarea(this);
 		});
-		/*$('.reply-input').on('paste', function (e) {
-			Utils.nextTick(function(){ checkTextarea(this); }, 100);
-		});*/
 		send_comment_cd(piliana.commentId, comment, piliana.discussionId);
 	}
 
@@ -1612,7 +1606,7 @@
 	}
 
 	function send_reply(comment){
-		console.log(' -> send_reply');
+		log(' -> send_reply');
 		var piliana = this;
 		$('.loaderOverlay').show();
 		piliana.execute_approve_comment().then(data => {
@@ -1662,6 +1656,7 @@
 		gtm: {
 			containerId: ''
 		},
+		debugMode: false
 	};
 
 
@@ -1671,6 +1666,7 @@
 	var Piliana = function(PilianaSelector, params = {}){
 		piliana = this;
 		piliana.params = Utils.extend({}, defaults, params);
+		log('=> initializing piliana');
 
 		// Find el
 		var $el = $(PilianaSelector);
@@ -1713,11 +1709,9 @@
 
 	Piliana.prototype.loadView = function loadView (view) {
 		var piliana = this;
-		//console.log(' ');
-		console.log('-------------------------------------------------------------------------------------');
-		console.log('                           LOAD VIEW: '+view+'.html');
-		console.log('-------------------------------------------------------------------------------------');
-		//console.log(' ');
+		log('-------------------------------------------------------------------------------------');
+		log('                           LOAD VIEW: '+view+'.html');
+		log('-------------------------------------------------------------------------------------');
 		var req = new XMLHttpRequest();
 		req.open('GET', 'view/'+view+'.html');
 		req.send();
@@ -1739,6 +1733,12 @@
 			}
 		};
 	};
+
+	function log(logMsg){
+		if (piliana.params.debugMode){
+			console.log(logMsg);
+		}
+	}
 
 
 	/**
