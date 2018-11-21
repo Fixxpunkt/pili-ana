@@ -42,27 +42,26 @@ h2.heading {
 
 /* ICONS */
 .icon {
-	background-image: url('../media/sprites/icons.png');
 	background-repeat: no-repeat;
 	display: block;
 }
 
 .icon-approve {
+	background-image: url('data:image/svg+xml;utf8,<svg width="23px" height="16px" viewBox="0 0 23 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><g id="iPhone-X-9" transform="translate(-281.000000, -615.000000)" stroke="#FFFFFF" stroke-width="4"><g id="Group-4" transform="translate(59.000000, 598.000000)"><g id="Check" transform="translate(208.000000, 0.000000)"><polyline id="Line-2" points="16.3636364 24.5823702 22.9815088 30.9090909 34.5454545 19.0909091"></polyline></g></g></g></g></svg>');
 	width: 24px;
 	height: 17px;
-	background-position: -53px -10px;
 }
 
 .icon-delete {
+	background-image: url('data:image/svg+xml;utf8,<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"><g id="iPhone-X-9" transform="translate(-76.000000, -615.000000)" stroke="#FFFFFF" stroke-width="4"><g id="Group-4" transform="translate(59.000000, 598.000000)"><g id="Delete"><g id="Group" transform="translate(25.454545, 25.454545) rotate(-45.000000) translate(-25.454545, -25.454545) translate(16.363636, 16.363636)"><path d="M18.1818182,9.09090909 L0,9.09090909" id="Line"></path><path d="M9.09090909,17.2727273 L9.09090909,0" id="Line"></path></g></g></g></g></g></svg>');
 	width: 18px;
 	height: 18px;
-	background-position: -47px -46px;
 }
 
 .icon-reply {
+	background-image: url('data:image/svg+xml;utf8,<svg width="19px" height="14px" viewBox="0 0 19 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="iPhone-X-9" transform="translate(-179.000000, -616.000000)" fill="#FFFFFF"><g id="Group-4" transform="translate(59.000000, 598.000000)"><g id="Comment" transform="translate(104.000000, 0.000000)"><path d="M21.3636364,18.1818182 L29.5436367,18.1818182 C32.3050604,18.1818182 34.5436367,20.4203944 34.5436367,23.1818182 L34.5436367,24.3153844 C34.5436367,27.0768081 32.3050604,29.3153844 29.5436367,29.3153844 L20.2653186,29.3153844 C20.0043226,29.3153844 19.753669,29.4174235 19.5668816,29.5997128 L18.0620733,31.0682827 C17.6668189,31.4540188 17.0337009,31.4463026 16.6479648,31.0510481 C16.4656756,30.8642607 16.3636364,30.6136071 16.3636364,30.3526111 L16.3636364,23.1818182 C16.3636364,20.4203944 18.6022126,18.1818182 21.3636364,18.1818182 Z" id="Rectangle-2"></path></g></g></g></g></svg>');
 	width: 19px;
 	height: 14px;
-	background-position: -96px -10px;
 }
 
 
@@ -566,7 +565,7 @@ progress::-webkit-progress-value {
 	background-color: #FFFFFF;
 }
 .action-btns .delete-btn.ready .icon-delete {
-	background-position: -10px -46px;
+	background-image: url('data:image/svg+xml;utf8,<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"><g id="iPhone-X-9" transform="translate(-76.000000, -615.000000)" stroke="#F40F97" stroke-width="4"><g id="Group-4" transform="translate(59.000000, 598.000000)"><g id="Delete"><g id="Group" transform="translate(25.454545, 25.454545) rotate(-45.000000) translate(-25.454545, -25.454545) translate(16.363636, 16.363636)"><path d="M18.1818182,9.09090909 L0,9.09090909" id="Line"></path><path d="M9.09090909,17.2727273 L9.09090909,0" id="Line"></path></g></g></g></g></g></svg>');
 }
 .action-btns .reply-btn,
 .action-btns .show-btn {
@@ -583,7 +582,7 @@ progress::-webkit-progress-value {
 	right: 0;
 }
 .action-btns .approve-btn.ready .icon-approve {
-	background-position: -9px -10px;
+	background-image: url('data:image/svg+xml;utf8,<svg width="23px" height="16px" viewBox="0 0 23 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><g id="iPhone-X-9" transform="translate(-281.000000, -615.000000)" stroke="#7ED321" stroke-width="4"><g id="Group-4" transform="translate(59.000000, 598.000000)"><g id="Check" transform="translate(208.000000, 0.000000)"><polyline id="Line-2" points="16.3636364 24.5823702 22.9815088 30.9090909 34.5454545 19.0909091"></polyline></g></g></g></g></svg>');
 }
 .action-btns .show-btn {
 	margin: 0 auto;

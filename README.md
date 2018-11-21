@@ -14,16 +14,12 @@ Download required Pili-Ana files:
   - piliana.css
 - js
   - piliana.js
-- media
-  - sprites
-    - icons.png
 - view
   - comment.html
   - dashboard.html
   - reply.html
 - index.html (demo html file)
 - server.js (only needed for local test with node.js)
-- readme.md
 
 ### 2. Include Pili-Ana Files To Website/App
 Include Pili-Ana's CSS and JS files to your html file:
@@ -78,7 +74,7 @@ var myPiliana = new Piliana('#piliana-container', {
 - containerId: Google Tag Manager ID
 
 ## How to run the app locally
-- open terminal and navigate to webapp folder
-- use ``` node server ``` to start local server (handled by server.js)
+- open terminal and navigate to piliana folder
+- use ``` node server ``` to start local server handled by server.js (node.js needed to be installed)
 - open localhost:8888 in any browser
 
