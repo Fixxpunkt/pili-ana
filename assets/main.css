@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800');
+
+* {
+    outline: none;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 32px;
+    color: #222222;
+}
+
+input:focus,
+button:focus,
+a:focus,
+a:hover {
+    text-decoration: none;
+    outline: none;
+    color: #f40f97;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 15px;
+    line-height: 1.4em;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 3.75em;
+}
+
+h2 {
+    font-size: 3.215em;
+}
+
+h3 {
+    font-size: 2em;
+}
+a {
+    text-decoration: none;
+    outline: none;
+    color: #f40f97;
+}
+
+p {
+  font-size: 1.6em;
+}
+ul li {
+    list-style: none;
+}
+.center {
+  text-align: center;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.white-color {
+  color: #ffffff;
+  text-shadow: 0 0 2px #aaa;
+}
+.bold {
+  font-weight: bold;
+}
+section.grey {
+  background-color: #cccccc;
+}
+section.magenta {
+  background: #f40f97;
+}
+section.dark {
+  background: #222222;
+  color: #ffffff;
+}
+
+input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+  border: none;
+  background: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+
+section[class*='section'] {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.btn {
+    padding: 12px 40px;
+    background: #f40f97;
+    color: #ffffff;
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    font-size: 1.6em;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    color: #ffffff;
+    -webkit-box-shadow: 0 25px 50px -20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 25px 50px -20px rgba(0, 0, 0, 0.6);
+}
+
+.navigation {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 20px 140px 15px 0;
+    background: #222;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.navigation .right-button {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+}
+
+.navigation .right-button a {
+    color: #ffffff;
+    padding: 10px 40px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.navigation .right-button a:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: #768ede;
+}
+
+.navigation ul.mainmenu {
+    text-align: right;
+    float: none;
+    display: block;
+}
+
+.navigation ul.mainmenu li {
+    float: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.navigation ul.nav.navbar-nav li a {
+    color: #ffffff;
+    font-size: 1.25em;
+    padding: 5px 2px;
+    text-transform: capitalize;
+    background: transparent;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    margin: 0 15px;
+}
+
+.navigation ul.nav.navbar-nav li a:hover {
+    border-bottom-color: #ffffff;
+}
+
+.navigation .navbar-brand {
+    height: auto;
+    padding: 0 15px;
+    color: #fff;
+    font-size: 2em;
+    line-height: 33px;
+    font-weight: bold;
+}
+
+.navigation .navbar-logo {
+  color: #ffffff;
+  line-height: 33px;
+}
+.navigation .navbar-logo span {
+  padding-right: 10px;
+}
+.navigation .navbar-logo img {
+  max-height: 25px;
+}
+
+.intro-section {
+    width: 100%;
+    padding-top: 20vh;
+}
+
+.intro-section .mobile-image {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: -158px;
+    max-width: 32em;
+}
+
+.bullet-point {
+    position: relative;
+    padding-left: 50px;
+}
+
+.bullet-point .bullet {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    text-align: center;
+    background: #f40f97;
+    z-index: 1;
+}
+
+.bullet-point h4 {
+    margin-bottom: 10px;
+}
+
+.screens-slide .item {
+    margin: 58px 17px 70px 15px;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.screens-slide .owl-nav {
+  display: none;
+}
+.screens-slide .owl-dots {
+    text-align: center;
+}
+.screens-slide .owl-dots .owl-dot {
+    display: inline-block;
+    margin: 3px;
+}
+
+.screens-slide .owl-dots .owl-dot span {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    opacity: 0.5;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+.screens-slide .owl-dots .owl-dot.active span {
+    opacity: 1;
+    -webkit-transform: scale(2);
+    -ms-transform: scale(2);
+    transform: scale(2);
+}
+
+.contact-section img {
+  max-height: 12em;
+}
+
+/** Footer  **/
+/*************/
+
+.footer {
+    padding: 20px 0;
+    background-color: #222222;
+    color: #ffffff;
+    font-size: 1.2em;
+}
+.footer .logo {
+  text-align: left;
+}
+
+
+/** Mobile **/
+/****************/
+@media only screen and (max-width: 767px) {
+  body {
+    font-size: 10px;
+  }
+  section[class*='section'] {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .navigation {
+    padding: 5px 0 ;
+  }
+  .navigation .navbar-header .navbar-logo {
+    float: right;
+    margin-right: 15px;
+  }
+  .navigation .navbar-logo img {
+    max-height: 20px;
+  }
+  .navigation .navbar-logo span {
+    padding-right: 5px;
+  }
+  .mobile-center {
+    text-align: center;
+  }
+  .workflow-section {
+    display: none !important;
+  }
+  .screens-slide .owl-controls {
+    position: static;
+    width: 100%;
+    text-align: center;
+  }
+  .mobile-image {
+      display: none !important;
+  }
+  .footer .logo {
+    max-width: 50vw;
+  }
+}
