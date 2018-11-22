@@ -1709,10 +1709,9 @@
 		log('-------------------------------------------------------------------------------------');
 		log('                           LOAD VIEW: '+view+'.html');
 		log('-------------------------------------------------------------------------------------');
-		var path = window.location.pathname.length > 1 ? window.location.pathname : '/';
-		path = piliana.params.cdn ? 'https://cdn.jsdelivr.net/gh/Fixxpunkt/pili-ana/' : path;
+		var path = piliana.params.cdn ? 'https://cdn.jsdelivr.net/gh/Fixxpunkt/pili-ana/view/'+view+'.html' : './view/'+view+'.html';
 		var req = new XMLHttpRequest();
-		req.open('GET', path+'view/'+view+'.html');
+		req.open('GET', path);
 		req.send();
 
 		req.onload = () => {
