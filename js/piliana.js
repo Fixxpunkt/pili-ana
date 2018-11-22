@@ -958,13 +958,13 @@
 	function get_discussions(){
 		log('  -> get_discussions');
 		var piliana = this;
-		return fetch(piliana.params.api.overview).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
+		return fetch(piliana.params.api.overview, {credentials: 'same-origin'}).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 	}
 
 	function get_comments_by_discussionId(){
 		log('  -> get_comments_by_discussionId');
 		var piliana = this;
-		return fetch(piliana.params.api.discussion+'?id='+piliana.discussionId).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
+		return fetch(piliana.params.api.discussion+'?id='+piliana.discussionId, {credentials: 'same-origin'}).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 	}
 
 	function get_open_comments(aAllComments){
@@ -1041,19 +1041,19 @@
 	function execute_delete_comment(){
 		log('  -> execute_delete_comment');
 		var piliana = this;
-		return fetch(piliana.params.api.delete+'?id='+piliana.commentId+'&iDiscussionId='+piliana.discussionId).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
+		return fetch(piliana.params.api.delete+'?id='+piliana.commentId+'&iDiscussionId='+piliana.discussionId, {credentials: 'same-origin'}).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 	}
 
 	function execute_approve_comment(){
 		log('  -> execute_approve_comment');
 		var piliana = this;
-		return fetch(piliana.params.api.approve+'?id='+piliana.commentId).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
+		return fetch(piliana.params.api.approve+'?id='+piliana.commentId, {credentials: 'same-origin'}).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 	}
 
 	function execute_create_response(sComment){
 		log('  -> execute_create_response');
 		var piliana = this;
-		return fetch(piliana.params.api.respond+'?id='+piliana.commentId+'&iDiscussionId='+piliana.discussionId+'&comment='+encodeURI(sComment)).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
+		return fetch(piliana.params.api.respond+'?id='+piliana.commentId+'&iDiscussionId='+piliana.discussionId+'&comment='+encodeURI(sComment), {credentials: 'same-origin'}).then(res => { if (res.status !== 200){ display_error_message(res); return; } else { return res.json()} })
 	}
 
 	function display_error_message(response){
