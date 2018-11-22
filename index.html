@@ -15,21 +15,21 @@
 </head>
 <body>
 
-	<div id="piliana-container" class="piliana-container"></div>
+	<div class="piliana-container"></div>
 	<script src="js/piliana.js"></script>
 	<script>
-		var myPiliana = new Piliana('#piliana-container', {
-			language: "de",
+		var myPiliana = new Piliana('.piliana-container', {
+			language: "en",
 			api: {
-				overview: "",
-				discussion: "",
-				approve: "",
-				delete: "",
-				respond: "",
-				perspective: "",
+				overview: "", // URL to API to get all discussions
+				discussion: "", // URL to API to get all comments of a discussion
+				approve: "", // URL to API to approve a comment
+				delete: "", // URL to API to delete a comment
+				respond: "", // URL to API to reply to a comment (approves associated comment and sends editor's response)
+				perspective: "", // URL to perspective API to get comment's toxicity
 			},
 			gtm: {
-				containerId: ""
+				containerId: "" // Google Tag Manager ID
 			}
 		});
 	</script>

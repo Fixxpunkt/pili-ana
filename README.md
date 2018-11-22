@@ -8,18 +8,25 @@ with the highlighted opportunities, approve or delete user comments and
 to reply to user comments.
 
 ## Getting Started
-### 1. Download Pili-Ana
+### 1a. Download Pili-Ana
 Download required Pili-Ana files:
 - css
   - piliana.css
 - js
   - piliana.js
 - view
-  - comment.html
   - dashboard.html
+  - comment.html
   - reply.html
 - index.html (demo html file)
-- server.js (only needed for local test with node.js)
+- server.js (only needed for local testing/development)
+
+### 1b. Use Pili-Ana via CDN
+It's also possible to use Pili-Ana via CDN:
+```
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Fixxpunkt/pili-ana/css/piliana.css">
+<script src="https://cdn.jsdelivr.net/gh/Fixxpunkt/pili-ana/js/piliana.js"></script>
+```
 
 ### 2. Include Pili-Ana Files To Website/App
 Include Pili-Ana's CSS and JS files to your html file:
@@ -40,26 +47,27 @@ Include Pili-Ana's CSS and JS files to your html file:
 ### 3. Add Pili-Ana HTML Layout
 Now add basic Pili-Ana layout to your app:
 ```
-<div id="piliana-container" class="piliana-container"></div>
+<div class="piliana-container"></div>
 ```
 
 ### 4. Initialize Pili-Ana
 Finally initialize Pili-Ana in JS. There are few options required to be set:
 ```
 <script>
-var myPiliana = new Piliana('#piliana-container', {
-  language: "",
+var myPiliana = new Piliana('.piliana-container', {
+  language: string,
   api: {
-    overview: "",
-    discussion: "",
-    approve: "",
-    delete: "",
-    respond: "",
-    perspective: "",
+    overview: string,
+    discussion: string,
+    approve: string,
+    delete: string,
+    respond: string,
+    perspective: string,
   },
   gtm: {
-    containerId: ""
-  }
+    containerId: string
+  },
+  cdn: boolean
 });
 </script>
 ```
@@ -72,6 +80,7 @@ var myPiliana = new Piliana('#piliana-container', {
 - respond:     URL to API to reply to a comment (approves associated comment and sends editor's response)
 - perspective: URL to perspective API
 - containerId: Google Tag Manager ID
+- cdn:		   set to **true** if you want the view files to be loaded via CDN
 
 ## How to run the app locally
 - open terminal and navigate to piliana folder
