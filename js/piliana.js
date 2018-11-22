@@ -821,16 +821,12 @@
 		return dom;
 	}
 	function hide(){
-		console.log('hide');
 		var el = this[0];
-		console.log(this);
 		el.style.display = "none";
 		return false;
 	}
 	function show(){
-		console.log('show');
 		var el = this[0];
-		console.log(this);
 		el.style.display = "block";
 		el.style.opacity = 1;
 		return false;
